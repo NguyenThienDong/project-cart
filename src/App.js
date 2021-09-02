@@ -11,7 +11,7 @@ import Cart from "./components/Cart";
 function App() {
     return (
         <Router>
-            <div>
+            <div className='App'>
                 <Header />
                 <main id="mainContainer">
                     <div className="container">

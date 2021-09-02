@@ -1,13 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import products from "../reducers/products";
 
-function Product() {
+function Product(props) {
+    let {product} = props;
+    let showRating = (rating) => {
+        let result = [];
+        for(var i = 1; i <= rating; i++) {
+            result.push(<i className="fa fa-star" />)
+        }
+        for(var j = 1; j <= (5 - rating); j++) {
+            result.push(<i className="fa fa-star-o" />)
+        }
+        return result;
+    }
     return (
         <div className="col-lg-4 col-md-6 mb-r">
             <div className="card text-center card-cascade narrower">
                 <div className="view overlay hm-white-slight z-depth-1">
                     <img
-                        src="https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/H0/HH0H2/HH0H2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=K7ik72"
+                        src={product.image}
                         className="img-fluid"
                         alt="img"
                     />
@@ -18,29 +30,17 @@ function Product() {
                 <div className="card-body">
                     <h4 className="card-title">
                         <strong>
-                            <Link to="/">Iphone 6 Plus</Link>
+                            <Link to="/">{product.name}</Link>
                         </strong>
                     </h4>
                     <ul className="rating">
                         <li>
-                            <i className="fa fa-star" />
-                        </li>
-                        <li>
-                            <i className="fa fa-star" />
-                        </li>
-                        <li>
-                            <i className="fa fa-star" />
-                        </li>
-                        <li>
-                            <i className="fa fa-star" />
-                        </li>
-                        <li>
-                            <i className="fa fa-star" />
+                            {showRating(product.rating)}
                         </li>
                     </ul>
-                    <p className="card-text">Sản phẩm do apply sản xuất</p>
+                    <p className="card-text">{product.description}</p>
                     <div className="card-footer">
-                        <span className="left">15$</span>
+                        <span className="left">{product.price}</span>
                         <span className="right">
                             <Link
                                 to="/"
