@@ -4,9 +4,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Products from "./containers/Products";
+import ProductsContainer from "./containers/Products";
 import Message from "./components/Messagge";
-import Cart from "./components/Cart";
+import CartContainer from './containers/Cart';
 
 function App() {
     return (
@@ -15,9 +15,9 @@ function App() {
                 <Header />
                 <main id="mainContainer">
                     <div className="container">
-                        <Products />
+                        <ProductsContainer />
                         <Message />
-						<Cart />
+						<CartContainer />
 					</div>
                 </main>
                 <Footer />

@@ -1,6 +1,16 @@
 import React from "react";
 
-function CartResult() {
+function CartResult(props) {
+    let {cart} = props;
+    let showTotalMouse = (cart) => {
+        var result = null;
+        if(cart.length > 0) {
+            for(var i = 0; i < cart.length; i++) {
+                result += cart[i].product.price * cart[i].quantity;
+            }
+        }
+        return result;
+    }
     return (
         <tr>
             <td colSpan={3} />
@@ -11,7 +21,7 @@ function CartResult() {
             </td>
             <td>
                 <h4>
-                    <strong>15$</strong>
+                    <strong>{showTotalMouse(cart)}$</strong>
                 </h4>
             </td>
             <td colSpan={3}>

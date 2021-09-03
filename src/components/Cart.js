@@ -1,10 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
-import CartItem from "./CartItem";
-import CartResult from "./CartResult";
 
 function Cart(props) {
-
+    const {children} = props;
     return (
         <section className="section">
             <div className="table-responsive">
@@ -20,10 +17,7 @@ function Cart(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        <CartItem />
-                        <CartItem />
-                        <CartItem />
-                        <CartResult />
+                        {children}
                     </tbody>
                 </table>
             </div>
@@ -31,10 +25,4 @@ function Cart(props) {
     );
 }
 
-const mapStateToProps = state => {
-    return {
-        
-    }
-}
-
-export default connect(mapStateToProps, null)(Cart);
+export default Cart;
