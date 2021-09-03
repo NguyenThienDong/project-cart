@@ -5,3 +5,8 @@ export const accAddToCart = (product, quantity) => ({
     product,
     quantity
 })
+
+export const accChangeMessage = (message) => ({
+    type: types.CHANGE_MESSAGE,
+    message
+})

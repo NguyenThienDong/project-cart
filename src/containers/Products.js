@@ -7,12 +7,14 @@ import Product from "../components/Product";
 import * as actions from '../actions/index';
 
 function ProductsContainer (props) {
-    let {products, onAddToCart} = props;
-    let showProducts = products.map(product => <Product 
-                                                    key={product.id} 
-                                                    product={product} 
-                                                    onAddToCart={onAddToCart}
-                                                    />)
+    let {products, onAddToCart, onChangeMessage} = props;
+    let showProducts = products.map(product => (
+        <Product 
+            key={product.id} 
+            product={product} 
+            onAddToCart={onAddToCart}
+            onChangeMessage={onChangeMessage}
+        />))
     return (
         <Products>
             {showProducts}
@@ -31,7 +33,8 @@ ProductsContainer.propTypes = {
             inventory: PropTypes.number.isRequired,
             rating: PropTypes.number.isRequired
         })
-    )
+    ),
+    onChangeMessage: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
@@ -42,7 +45,8 @@ const mapStateToProps = state => {
 
 const mapActionsToProps = (dispatch, props) => {
     return {
-        onAddToCart: (product) => dispatch(actions.accAddToCart(product, 1)) 
+        onAddToCart: (product) => dispatch(actions.accAddToCart(product, 1)) ,
+        onChangeMessage: (message) => dispatch(actions.accChangeMessage(message))
     }
 }
 

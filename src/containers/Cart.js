@@ -10,7 +10,7 @@ import CartResult from "../components/CartResult";
 function CartContainer (props) {
     let { cart } = props;
     let showCartItem = (cart) => {
-        let result = Message.MSG_CART_EMPTY;
+        let result = (<tr><td>{Message.MSG_CART_EMPTY}</td></tr>);
         if(cart.length > 0) {
             result = cart.map((item, index) => (
                 <CartItem
@@ -43,10 +43,7 @@ CartContainer.propTypes = {
             rating: PropTypes.number.isRequired
         }).isRequired,
         quantity: PropTypes.number.isRequired
-    })).isRequired,
-    onDeleteProductInCart : PropTypes.func.isRequired,
-    onChangeMessage : PropTypes.func.isRequired,
-    onUpdateProductInCart : PropTypes.func.isRequired,
+    })).isRequired
 }
 
 const mapStateToProps = state => {

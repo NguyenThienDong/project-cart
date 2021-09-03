@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import * as Message from '../constants/Message';
 
 function Product(props) {
     let {product} = props;
     let onAddToCart = (product) => {
         props.onAddToCart(product);
+        props.onChangeMessage(Message.MSG_ADD_TO_CART_SUCCESS);
     }
 
     let showRating = (rating) => {
