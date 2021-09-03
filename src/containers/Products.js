@@ -4,10 +4,15 @@ import PropTypes from 'prop-types';
 
 import Products from "../components/Products";
 import Product from "../components/Product";
+import * as actions from '../actions/index';
 
 function ProductsContainer (props) {
-    let {products} = props;
-    let showProducts = products.map(product => <Product key={product.id} product={product} />)
+    let {products, onAddToCart} = props;
+    let showProducts = products.map(product => <Product 
+                                                    key={product.id} 
+                                                    product={product} 
+                                                    onAddToCart={onAddToCart}
+                                                    />)
     return (
         <Products>
             {showProducts}
@@ -35,5 +40,11 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(ProductsContainer);
+const mapActionsToProps = (dispatch, props) => {
+    return {
+        onAddToCart: (product) => dispatch(actions.accAddToCart(product, 1)) 
+    }
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(ProductsContainer);
 

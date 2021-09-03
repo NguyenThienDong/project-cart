@@ -27,9 +27,33 @@ var initialState = [
     },
 ];
 
+var findIndex = (cart, product) => {
+    var index = -1;
+    if(cart.length > 0) {
+        for(var i = 0; i < cart.length; i++) {
+            if(cart[i].product.id === product.id) {
+                index = i
+            }
+        }
+    }
+    return index;
+}
+
 const cart = (state = initialState, action) => {
+    var index = -1;
+    var { product, quantity} = action;
     switch (action.type) {
         case types.ADD_TO_CART:
+            index = findIndex(state, action.product);
+            if(index !== -1) {
+                state[index].quantity += 1;
+            }else {
+                var cart = {
+                    product,
+                    quantity
+                }
+                state.push(cart);
+            }
             return [...state];
         default:
             return [...state];

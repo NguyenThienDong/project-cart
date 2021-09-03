@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 
 function Product(props) {
     let {product} = props;
+    let onAddToCart = (product) => {
+        props.onAddToCart(product);
+    }
+
     let showRating = (rating) => {
         let result = [];
         for(var i = 1; i <= rating; i++) {
@@ -42,14 +46,15 @@ function Product(props) {
                         <span className="left">{product.price}</span>
                         <span className="right">
                             <Link
-                                to="/"
+                                to='/'
                                 className="btn-floating blue-gradient"
                                 data-toggle="tooltip"
                                 data-placement="top"
                                 title="true"
                                 data-original-title="Add to Cart"
+                                onClick={() => onAddToCart(product)}
                             >
-                                <i className="fa fa-shopping-cart" />
+                                <i className="fa fa-shopping-cart"/>
                             </Link>
                         </span>
                     </div>

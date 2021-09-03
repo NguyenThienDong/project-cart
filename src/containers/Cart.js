@@ -32,8 +32,8 @@ function CartContainer (props) {
 }
 
 CartContainer.propTypes = {
-    products: PropTypes.arrayOf(
-        PropTypes.shape({
+    cart: PropTypes.arrayOf(PropTypes.shape({
+        product: PropTypes.shape({
             id: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
             image: PropTypes.string.isRequired,
@@ -41,8 +41,12 @@ CartContainer.propTypes = {
             price: PropTypes.number.isRequired,
             inventory: PropTypes.number.isRequired,
             rating: PropTypes.number.isRequired
-        })
-    )
+        }).isRequired,
+        quantity: PropTypes.number.isRequired
+    })).isRequired,
+    onDeleteProductInCart : PropTypes.func.isRequired,
+    onChangeMessage : PropTypes.func.isRequired,
+    onUpdateProductInCart : PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {
