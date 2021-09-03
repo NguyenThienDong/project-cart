@@ -1,16 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import products from "../reducers/products";
 
 function Product(props) {
     let {product} = props;
     let showRating = (rating) => {
         let result = [];
         for(var i = 1; i <= rating; i++) {
-            result.push(<i className="fa fa-star" />)
+            result.push( <i key={i} className="fa fa-star" />)
         }
         for(var j = 1; j <= (5 - rating); j++) {
-            result.push(<i className="fa fa-star-o" />)
+            result.push(<i key={j + i} className="fa fa-star-o" />)
         }
         return result;
     }
