@@ -10,3 +10,8 @@ export const accChangeMessage = (message) => ({
     type: types.CHANGE_MESSAGE,
     message
 })
+
+export const accDeleteProductInCart = (product) => ({
+    type: types.DELETE_PRODUCT_IN_CART,
+    product
+})

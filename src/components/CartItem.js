@@ -1,11 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import * as Message from '../constants/Message';
 
 function CartItem(props) {
-    const {item} = props;
+    const {item, onDeleteProductInCart, onChangeMessage} = props;
     const showTotalPrice = (price, quantity) => {
         return price * quantity;
     }
+
+    const onDelete = (product) => {
+        onDeleteProductInCart(product);
+        onChangeMessage(Message.MSG_DELETE_PRODUCT_IN_CART_SUCCESS);
+    }
+
     return (
         <tr>
             <th scope="row">
@@ -47,6 +54,7 @@ function CartItem(props) {
                     data-placement="top"
                     title="true"
                     data-original-title="Remove item"
+                    onClick={() => onDelete(item.product)}
                 >
                     X
                 </button>
