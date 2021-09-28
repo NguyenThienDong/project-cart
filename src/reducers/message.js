@@ -6,7 +6,6 @@ var initialState = 'Chào mừng bạn đến với Website';
 const message = (state = initialState, action) => {
     switch (action.type) {
         case types.CHANGE_MESSAGE:
-            console.log(typeof action.message);
             return action.message;
         default:
             return [...state];

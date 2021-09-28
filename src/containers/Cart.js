@@ -9,7 +9,7 @@ import CartResult from "../components/CartResult";
 import * as actions from '../actions/index';
 
 function CartContainer (props) {
-    let { cart, onDeleteProductInCart, onChangeMessage } = props;
+    let { cart, onDeleteProductInCart, onChangeMessage, onUpdateProductInCart } = props;
     let showCartItem = (cart) => {
         let result = (<tr><td>{Message.MSG_CART_EMPTY}</td></tr>);
         if(cart.length > 0) {
@@ -20,6 +20,7 @@ function CartContainer (props) {
                     index={index} 
                     onDeleteProductInCart={onDeleteProductInCart}
                     onChangeMessage={onChangeMessage}
+                    onUpdateProductInCart={onUpdateProductInCart}  
                 />
                 
             ))
@@ -58,7 +59,8 @@ const mapStateToProps = state => {
 const mapActionsToProps = (dispatch, props) => {
     return {
         onDeleteProductInCart: (product) => dispatch(actions.accDeleteProductInCart(product)),
-        onChangeMessage: (message) => dispatch(actions.accChangeMessage(message))
+        onChangeMessage: (message) => dispatch(actions.accChangeMessage(message)),
+        onUpdateProductInCart: (product, quantity) => dispatch(actions.accUpdateProductInCart(product, quantity))
     }
 }
 

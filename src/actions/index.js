@@ -15,3 +15,9 @@ export const accDeleteProductInCart = (product) => ({
     type: types.DELETE_PRODUCT_IN_CART,
     product
 })
+
+export const accUpdateProductInCart = (product, quantity) => ({
+    type: types.UPDATE_PRODUCT_IN_CART,
+    product,
+    quantity
+})

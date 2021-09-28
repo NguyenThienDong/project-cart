@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import * as Message from '../constants/Message';
 
 function CartItem(props) {
-    const {item, onDeleteProductInCart, onChangeMessage} = props;
+    const {item, onDeleteProductInCart, onChangeMessage, onUpdateProductInCart} = props;
     const showTotalPrice = (price, quantity) => {
         return price * quantity;
     }
@@ -11,6 +11,13 @@ function CartItem(props) {
     const onDelete = (product) => {
         onDeleteProductInCart(product);
         onChangeMessage(Message.MSG_DELETE_PRODUCT_IN_CART_SUCCESS);
+    }
+
+    const onUpdateQuantity = (product, quantity) => {
+        if(quantity > 0 && quantity <= product.inventory) {
+            onUpdateProductInCart(product, quantity);
+            onChangeMessage(Message.MSG_UPDATE_CART_SUCCESS);
+        }
     }
 
     return (
@@ -32,15 +39,15 @@ function CartItem(props) {
                 <span className="qty">{item.quantity} </span>
                 <div className="btn-group radio-group" data-toggle="buttons">
                     <label
-                        className="btn btn-sm btn-primary
-																	btn-rounded waves-effect waves-light"
+                        className="btn btn-sm btn-primary btn-rounded waves-effect waves-light"
+                        onClick={() => onUpdateQuantity(item.product, item.quantity - 1)}
                     >
                         <Link to="/">—</Link>
                     </label>
                     <label
-                        className="btn btn-sm btn-primary
-																	btn-rounded waves-effect waves-light"
-                    >
+                        className="btn btn-sm btn-primary btn-rounded waves-effect waves-light"
+                        onClick={() => onUpdateQuantity(item.product, item.quantity + 1)}
+                    >   
                         <Link to="/">+</Link>
                     </label>
                 </div>
